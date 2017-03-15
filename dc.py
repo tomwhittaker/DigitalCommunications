@@ -45,7 +45,7 @@ def repeatedSquare(number,power,mod):
         posistionFinder.append(current)
         current=current*2
         value=value*value%mod
-        print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
+        # print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
     used=[]
     while len(powerOfTwo) !=0:
         num = powerOfTwo.pop()
@@ -57,6 +57,15 @@ def repeatedSquare(number,power,mod):
         pos = posistionFinder.index(x)
         answer =answer*powers[pos]%mod
     return answer
+
+def rsaEncrypt(publicKeyR,message):
+    message = repeatedSquare(message, publicKeyR[1],publicKeyR[0])
+    return message
+
+def rsaDecrypt(privateKeyR,message):
+    message = repeatedSquare(message,privateKeyR[1],privateKeyR[0])
+    return message
+
 #Q1
 encoded = VigenereEncode('LETSSAILFORTHESPANISHMAIN','PIECESOFEIGHT')
 #q2
@@ -74,9 +83,16 @@ MFOLSKKRYGHYGCELHQHCOUFFMBDWGHVUGYEWHJYOUDTJJJKLHYLPENAOOUK\
 HOXIFSDSUNACTFCPGKLTAINMULRBNXBUMTCMYPAXLQDLAJMFPSDKEKEOKNR\
 RHQPXDKXMHEPWJBINLDIZTOYPQCIAMBXLIJZDKQRVOFTNRQNGIYOOBSXKZE\
 BHCLYNUTALHFXZVNZNFJZGOSBKCPLEKFOKIEWYX',encoded)
-#Q4i
+# Q4i
 repeatedSquare(17,54,139)
-#q4ii
+# q4ii
 repeatedSquare(2345,65531,265189)
-#q4iii
+# q4iii
 repeatedSquare(4733459,65537,75968647)
+#q5i
+# Cipher = Message^e mod n (in this case e=privateKey[1] and n=privateKey[0])
+# q5ii
+rsaEncrypt((76282747,65537),654733)
+#q6i
+# Message = Cipher^privateKey mod n.
+print rsaDecrypt((9436709, 3497603),1684446.)
