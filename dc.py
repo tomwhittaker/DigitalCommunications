@@ -44,8 +44,8 @@ def repeatedSquare(number,power,mod):
         powerOfTwo.append(current)
         posistionFinder.append(current)
         current=current*2
-        value=value*value
-        print  "",number,"^",current,"=",value
+        value=value*value%mod
+        print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
     used=[]
     while len(powerOfTwo) !=0:
         num = powerOfTwo.pop()
@@ -75,8 +75,8 @@ HOXIFSDSUNACTFCPGKLTAINMULRBNXBUMTCMYPAXLQDLAJMFPSDKEKEOKNR\
 RHQPXDKXMHEPWJBINLDIZTOYPQCIAMBXLIJZDKQRVOFTNRQNGIYOOBSXKZE\
 BHCLYNUTALHFXZVNZNFJZGOSBKCPLEKFOKIEWYX',encoded)
 #Q4i
-print repeatedSquare(17,54,139)
+repeatedSquare(17,54,139)
 #q4ii
-print repeatedSquare(2345,65531,265189)
+repeatedSquare(2345,65531,265189)
 #q4iii
-print repeatedSquare(4733459,65537,75968647)
+repeatedSquare(4733459,65537,75968647)
