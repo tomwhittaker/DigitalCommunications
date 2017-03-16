@@ -1,3 +1,4 @@
+import math
 def VigenereEncode(message,key):
     alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     key = createFullKey(message,key)
@@ -66,6 +67,19 @@ def rsaDecrypt(privateKeyR,message):
     message = repeatedSquare(message,privateKeyR[1],privateKeyR[0])
     return message
 
+def rsaSignature(privateKeyS,message):
+    signature= repeatedSquare(message,privateKeyS[1],privateKeyS[0])
+    return signature
+
+def lookForPrimeFactor(number):
+    x=2
+    while x<math.sqrt(number):
+        if number%x==0:
+            return x
+        x=x+1
+
+
+
 #Q1
 encoded = VigenereEncode('LETSSAILFORTHESPANISHMAIN','PIECESOFEIGHT')
 #q2
@@ -95,4 +109,33 @@ repeatedSquare(4733459,65537,75968647)
 rsaEncrypt((76282747,65537),654733)
 #q6i
 # Message = Cipher^privateKey mod n.
-print rsaDecrypt((9436709, 3497603),1684446.)
+#q6ii
+rsaDecrypt((9436709, 3497603),1684446)
+#q7i
+# 'decrypt' message with own privateKey, encrypt both message and signature,send both
+#q7ii
+message=337722
+signature=rsaDecrypt((9436709,3497603), message)
+#q8i
+# decrypt both message and signature, encrypt the signature with the senders public key
+#q8ii
+message = rsaDecrypt((9436709, 3497603),4647068)
+signature = rsaDecrypt((9436709, 3497603),526345)
+veri = rsaEncrypt((76282747,65537),signature)
+#q8iii
+#not valid
+#q9
+#Choose a random number < n and create message m =R^public key mod n send (M,R) and should work
+(122269479,53407)
+r=100
+m = repeatedSquare(r, 53407,122269479)
+pair = (m,r)
+print rsaEncrypt((122269479,53407), 100)
+print m
+#q10
+p=lookForPrimeFactor(76282747)
+q=76282747/p
+print p,q
+number=2
+while number !=0:
+    number*65537
