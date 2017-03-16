@@ -126,16 +126,25 @@ veri = rsaEncrypt((76282747,65537),signature)
 #not valid
 #q9
 #Choose a random number < n and create message m =R^public key mod n send (M,R) and should work
-(122269479,53407)
-r=100
-m = repeatedSquare(r, 53407,122269479)
-pair = (m,r)
-print rsaEncrypt((122269479,53407), 100)
-print m
-#q10
-p=lookForPrimeFactor(76282747)
-q=76282747/p
-print p,q
-number=2
-while number !=0:
-    number*65537
+(122269479,53407),58621765
+# r=100
+# m = repeatedSquare(r, 53407,122269479)
+# pair = (m,r)
+# print rsaEncrypt((122269479,53407), 100)
+# print m
+# #q10
+# p=lookForPrimeFactor(76282747)
+# q=76282747/p
+# print p,q
+# number=2
+# while number !=0:
+#     number*65537
+for x in range(0,9):
+    for y in range(0,9):
+        for z in range(0,9):
+            pin= str(x)+str(y)+str(z)
+            pin=int(pin)
+            encryptPin = rsaEncrypt((76282747,65537),pin)
+            if str(encryptPin) in str(58621765):
+                if len(str(pin))>=3:
+                    print pin
