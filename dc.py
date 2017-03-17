@@ -39,14 +39,20 @@ def repeatedSquare(number,power,mod):
     posistionFinder=[]
     current=1
     value=number
-    while current<power:
+    while current<halfPower:
         value=value%mod
         powers.append(value)
         powerOfTwo.append(current)
         posistionFinder.append(current)
         current=current*2
         value=value*value%mod
-        # print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
+        print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
+    value=value%mod
+    powers.append(value)
+    powerOfTwo.append(current)
+    posistionFinder.append(current)
+    current=current*2
+    value=value*value%mod
     used=[]
     while len(powerOfTwo) !=0:
         num = powerOfTwo.pop()
@@ -57,6 +63,7 @@ def repeatedSquare(number,power,mod):
     for x in used:
         pos = posistionFinder.index(x)
         answer =answer*powers[pos]%mod
+    print answer
     return answer
 
 def rsaEncrypt(publicKeyR,message):
@@ -115,7 +122,11 @@ rsaDecrypt((9436709, 3497603),1684446)
 # 'decrypt' message with own privateKey, encrypt both message and signature,send both
 #q7ii
 message=337722
+encrypt = rsaEncrypt((76282747,65537),message)
+
 signature=rsaDecrypt((9436709,3497603), message)
+encrypSig = rsaEncrypt( (76282747,65537),signature)
+
 #q8i
 # decrypt both message and signature, encrypt the signature with the senders public key
 #q8ii
@@ -127,18 +138,19 @@ veri = rsaEncrypt((76282747,65537),signature)
 #q9
 #Choose a random number < n and create message m =R^public key mod n send (M,R) and should work
 (122269479,53407),58621765
-# r=100
-# m = repeatedSquare(r, 53407,122269479)
+r=100
+m = repeatedSquare(r, 53407,122269479)
+
 # pair = (m,r)
-# print rsaEncrypt((122269479,53407), 100)
+rsaEncrypt((122269479,53407), 100)
 # print m
 # #q10
-# p=lookForPrimeFactor(76282747)
-# q=76282747/p
-# print p,q
-# number=2
-# while number !=0:
-#     number*65537
+p=lookForPrimeFactor(76282747)
+q=76282747/p
+print p,q
+number=2
+while number !=0:
+    number*65537
 for x in range(0,9):
     for y in range(0,9):
         for z in range(0,9):
