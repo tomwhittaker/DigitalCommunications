@@ -40,19 +40,24 @@ def repeatedSquare(number,power,mod):
     current=1
     value=number
     while current<halfPower:
+        print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
         value=value%mod
         powers.append(value)
         powerOfTwo.append(current)
         posistionFinder.append(current)
         current=current*2
         value=value*value%mod
-        print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
+    print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
     value=value%mod
     powers.append(value)
     powerOfTwo.append(current)
     posistionFinder.append(current)
     current=current*2
     value=value*value%mod
+    powers.append(value)
+    print  ""+str(number)+"^"+str(current),"=",value,"mod",mod
+    powerOfTwo.append(current)
+    posistionFinder.append(current)
     used=[]
     while len(powerOfTwo) !=0:
         num = powerOfTwo.pop()
@@ -63,7 +68,7 @@ def repeatedSquare(number,power,mod):
     for x in used:
         pos = posistionFinder.index(x)
         answer =answer*powers[pos]%mod
-    print answer
+    # print answer
     return answer
 
 def rsaEncrypt(publicKeyR,message):
@@ -105,11 +110,11 @@ HOXIFSDSUNACTFCPGKLTAINMULRBNXBUMTCMYPAXLQDLAJMFPSDKEKEOKNR\
 RHQPXDKXMHEPWJBINLDIZTOYPQCIAMBXLIJZDKQRVOFTNRQNGIYOOBSXKZE\
 BHCLYNUTALHFXZVNZNFJZGOSBKCPLEKFOKIEWYX',encoded)
 # Q4i
-repeatedSquare(17,54,139)
+print repeatedSquare(17,54,139)
 # q4ii
-repeatedSquare(2345,65531,265189)
+print repeatedSquare(2345,65531,265189)
 # q4iii
-repeatedSquare(4733459,65537,75968647)
+print repeatedSquare(4733459,65537,75968647)
 #q5i
 # Cipher = Message^e mod n (in this case e=privateKey[1] and n=privateKey[0])
 # q5ii
@@ -147,13 +152,11 @@ rsaEncrypt((122269479,53407), 100)
 # #q10
 p=lookForPrimeFactor(76282747)
 q=76282747/p
-print p,q
+# print p,q
 number=2
-while number !=0:
-    number*65537
-for x in range(0,9):
-    for y in range(0,9):
-        for z in range(0,9):
+for x in range(1,10):
+    for y in range(0,10):
+        for z in range(0,10):
             pin= str(x)+str(y)+str(z)
             pin=int(pin)
             encryptPin = rsaEncrypt((76282747,65537),pin)
